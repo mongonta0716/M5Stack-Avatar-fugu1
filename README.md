@@ -8,12 +8,10 @@ M5Stack-avatarのオリジナルはmeganetaaaanさんの[m5stack-avatar](https:/
 # 使い方(Usage)
 
 Avatar_fugu.bin,jpgフォルダ,jsonフォルダをmicroSDカードのルート上にコピーします。
-
 [M5Stack LovyanLauncher](https://github.com/lovyan03/M5Stack_LovyanLauncher)から起動します。
 LovyanLauncherの詳しい使い方は下記のブログにて解説しています。
 
 Copy fugu_jpg.bin and jpg folder on root of microSDCard.
-
 It can be launched from [M5Stack LovyanLauncher](https://github.com/lovyan03/M5Stack_LovyanLauncher).Read the following blog for a detailed explanation of LovyanLauncher.(in Japanese)
 
 [M5Stack LovyanLauncherの使い方｜ラズパイ好きの日記](https://raspberrypi.mongonta.com/howto-use-m5stack-lovyanlauncher/)
@@ -24,7 +22,7 @@ It can be launched from [M5Stack LovyanLauncher](https://github.com/lovyan03/M5S
 * [M5Stack-SD-Updater](https://github.com/tobozo/M5Stack-SD-Updater)
 
 # Licence
-[LGPLv3]
+[GPLv3](https://github.com/mongonta0716/M5Stack-Avatar-fugu1/blob/master/LICENSE)
 
 # Author
 
