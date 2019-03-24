@@ -1,1 +1,31 @@
 # M5Stack-Avatar-fugu1
+
+M5Stack Avatarのフグバージョンです。
+
+Avatar表示は、robo8080さんの[M5Stack_WebRadio_Avator](https://github.com/robo8080/M5Stack_WebRadio_Avator)をベースにさせていただきました。
+M5Stack-avatarのオリジナルはmeganetaaaanさんの[m5stack-avatar](https://github.com/meganetaaan/m5stack-avatar)です。
+
+# 使い方(Usage)
+
+Avatar_fugu.bin,jpgフォルダ,jsonフォルダをmicroSDカードのルート上にコピーします。
+
+[M5Stack LovyanLauncher](https://github.com/lovyan03/M5Stack_LovyanLauncher)から起動します。
+LovyanLauncherの詳しい使い方は下記のブログにて解説しています。
+
+Copy fugu_jpg.bin and jpg folder on root of microSDCard.
+
+It can be launched from [M5Stack LovyanLauncher](https://github.com/lovyan03/M5Stack_LovyanLauncher).Read the following blog for a detailed explanation of LovyanLauncher.(in Japanese)
+
+[M5Stack LovyanLauncherの使い方｜ラズパイ好きの日記](https://raspberrypi.mongonta.com/howto-use-m5stack-lovyanlauncher/)
+
+# Requirement
+
+コンパイルする場合は、以下のライブラリが必要です。
+* [M5Stack-SD-Updater](https://github.com/tobozo/M5Stack-SD-Updater)
+
+# Licence
+[LGPLv3]
+
+# Author
+
+[Takao Akaki](https://twitter.com/mongonta555)
