@@ -1,6 +1,7 @@
 #pragma once
 #include <M5Stack.h>
 
+
 class Mouth
 {
 private:
@@ -31,6 +32,7 @@ public:
   void setOpenRatio(float ratio);
   void open(int percent);
   void draw(float breath);
+  void spitWater();
 };
 
 class Eye
@@ -85,5 +87,5 @@ public:
   void setExpression(void); // TODO
   void init(void);
   void draw(void);
-  void spitWater(void);
+  void extendAction(void);
 };

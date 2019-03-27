@@ -22,7 +22,7 @@ Mouth::Mouth(int x, int y, int minWidth, int maxWidth, int minHeight, int maxHei
   this->lastW = 0;
   this->lastH = 0;
   this->offsetX = 0;
-  this->offsetY = 13;
+  this->offsetY = 5;
 }
 void Mouth::clear()
 {
@@ -34,7 +34,7 @@ void Mouth::_draw(int x, int y, int w, int h)
   if (lastX == x && lastY == y && lastW == w && lastH == h) return;
   clear();
 //  M5.Lcd.fillRect(x, y, w, h, primaryColor);
-  M5.Lcd.fillEllipse(160, 165, 50, 45, TFT_LIGHTGREY);
+  M5.Lcd.fillEllipse(160, 155, 50, 45, TFT_LIGHTGREY);
   M5.Lcd.fillEllipse(x+w/2+offsetX, y+h/2+offsetY, w/2, h/2, RED);
   M5.Lcd.drawEllipse(x+w/2+offsetX, y+h/2+offsetY, w/2, h/2, TFT_LIGHTGREY);
   if(h > 3) {
@@ -89,8 +89,8 @@ Eye::Eye(int x, int y, int r, uint32_t primaryColor, uint32_t secondaryColor)
 }
 void Eye::clear()
 {
-  M5.Lcd.fillRect(lastX - lastR - 1, lastY - lastR - 1,
-                  lastR * 2 + 2 , lastR * 2 + 2  , secondaryColor);
+  M5.Lcd.fillCircle(lastX , lastY ,
+                  lastR / 2 + 10 , secondaryColor);
 }
 void Eye::drawCircle(int x, int y, int r)
 {
@@ -98,14 +98,12 @@ void Eye::drawCircle(int x, int y, int r)
   clear();
   M5.Lcd.fillCircle(x, y, r, primaryColor);
   // TODO: Sleepy face
-  // M5.Lcd.fillRect(x - r, y - r, r * 2 + 2, r, secondaryColor);
   lastX = x;
   lastY = y;
   lastR = r;
 }
 void Eye::drawRect(int x, int y, int w, int h)
 {
-//  if (lastX == x + w / 2 && lastY == y + h / 2 && lastR == w) return;
   clear();
   M5.Lcd.fillRect(x, y, w , h , primaryColor);
   lastX = x + w / 2;
@@ -224,9 +222,9 @@ void Avatar::draw()
   }
 }
 
-void Avatar::spitWater()
+void Avatar::extendAction()
 {
   eyeL.open(0);
-  eyeR.open(1);
+  eyeR.open(0);
   
 }

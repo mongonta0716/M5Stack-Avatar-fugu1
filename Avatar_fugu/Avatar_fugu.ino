@@ -3,6 +3,7 @@
 #include "src/avatar.h"
 
 Avatar *avatar;
+TaskHandle_t taskHandle;
 
 void breath(void *args)
 {
@@ -50,10 +51,10 @@ void blink(void *args)
 {
   for(;;)
   {
-    avatar->setEyeOpen(1);
-    delay(2500 + 100 * random(20));
-    avatar->setEyeOpen(0);
-    delay(300 + 10 * random(20));
+      avatar->setEyeOpen(1);
+      delay(2500 + 100 * random(20));
+      avatar->setEyeOpen(0);
+      delay(300 + 10 * random(20));
   }
 }
 
@@ -66,8 +67,8 @@ void startAvatar()
                     2048,      /* Stack size in words */
                     NULL,      /* Task input parameter */
                     1,         /* Priority of the task */
-                    NULL,      /* Task handle. */
-                    0);        /* Core where the task should run */
+                    &taskHandle,      /* Task handle. */
+                    1);        /* Core where the task should run */
   xTaskCreatePinnedToCore(
                     saccade,     /* Function to implement the task */
                     "saccade",   /* Name of the task */
@@ -75,23 +76,23 @@ void startAvatar()
                     NULL,      /* Task input parameter */
                     3,         /* Priority of the task */
                     NULL,      /* Task handle. */
-                    1);        /* Core where the task should run */
+                    0);        /* Core where the task should run */
   xTaskCreatePinnedToCore(
                     breath,     /* Function to implement the task */
                     "breath",   /* Name of the task */
                     2048,      /* Stack size in words */
                     NULL,      /* Task input parameter */
-                    2,         /* Priority of the task */
+                    0,         /* Priority of the task */
                     NULL,      /* Task handle. */
-                    1);        /* Core where the task should run */
+                    0);        /* Core where the task should run */
   xTaskCreatePinnedToCore(
                     blink,     /* Function to implement the task */
                     "blink",   /* Name of the task */
                     2048,      /* Stack size in words */
                     NULL,      /* Task input parameter */
-                    2,         /* Priority of the task */
+                    0,         /* Priority of the task */
                     NULL,      /* Task handle. */
-                    1);        /* Core where the task should run */  
+                    0);        /* Core where the task should run */  
 }
 
 void setup()
@@ -114,4 +115,23 @@ void loop()
 {
   // avatar's face updates in another thread
   // so no need to loop-by-loop rendering
+  M5.update();
+  if (M5.BtnB.wasPressed()) {
+    vTaskSuspend(taskHandle);
+    avatar->extendAction();
+
+    M5.Lcd.fillEllipse(160, 155, 50, 45, TFT_LIGHTGREY);
+    M5.Lcd.fillEllipse(160, 155, 30, 30, TFT_CYAN);
+    while (M5.BtnB.isPressed()) {
+      M5.update();
+      M5.Lcd.drawJpgFile(SD, "/jpg/Avatar_fugu_water1.jpg", 128, 155);
+      delay(100);
+      M5.Lcd.drawJpgFile(SD, "/jpg/Avatar_fugu_water2.jpg", 128, 155);
+      delay(100);
+      M5.Lcd.drawJpgFile(SD, "/jpg/Avatar_fugu_water3.jpg", 128, 155);
+      delay(100);
+    }
+    M5.Lcd.drawJpgFile(SD, "/jpg/Avatar_fugu_bg.jpg");
+    vTaskResume(taskHandle); 
+  }  
 }
